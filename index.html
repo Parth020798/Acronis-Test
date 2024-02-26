@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet" />
+    <style>
+      body,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      .h1,
+      .h2,
+      .h3,
+      .h4,
+      .h5,
+      .h6,
+      .tooltip-inner,
+      .select2-search input,
+      .select2-container-multi .select2-choices .select2-search-field input,
+      .smart-form .input input,
+      .smart-form .select select,
+      .smart-form .textarea textarea,
+      .ui-widget,
+      .ui-widget input,
+      .ui-widget select,
+      .ui-widget textarea,
+      .ui-widget button {
+        font-family: "Open Sans", Arial, Helvetica, Sans-Serif !important;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale
+      }
+
+      html {
+        margin: 0;
+        padding: 0;
+        height: auto;
+        overflow-x: visible !important
+      }
+
+      body {
+        overflow: visible;
+        background: #fff
+      }
+
+      .login-pg a {
+        color: #3990F6;
+        text-decoration: none;
+        outline: none
+      }
+
+      .login-pg a:focus,
+      .login-pg a:hover {
+        color: #0065DD;
+        text-decoration: none
+      }
+
+      .login-pg label {
+        font-weight: normal;
+        font-style: normal;
+        font-size: 14px;
+        line-height: 24px;
+        height: 24px;
+        margin-bottom: 5px;
+        color: rgba(36, 49, 67, 0.6)
+      }
+
+      .login-pg .right-sec-inner {
+        padding: 44px 66px 32px 58px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column
+      }
+
+      .login-pg .right-sec {
+        width: 496px;
+        padding: 0;
+        background-color: #EEF6FF;
+        color: #384a63
+      }
+
+      .login-pg .d-flex {
+        display: flex;
+        flex-direction: unset;
+      }
+
+      .login-pg .left-sec {
+        width: 520px;
+        padding: 0
+      }
+
+      .login-pg .top-sec img.logo {
+        max-width: 138px;
+        height: 30px;
+        margin-bottom: 16px
+      }
+
+      .login-pg .form-sec h4 {
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 32px;
+        color: #243143;
+        margin-bottom: 28px;
+        text-align: center
+      }
+
+      .login-pg .a-messagebox {
+        padding: 10px 0;
+        margin-bottom: 20px
+      }
+
+      .login-pg .a-messagebox ul {
+        padding-left: 0;
+        font-size: 14px;
+        margin: 0;
+        list-style: none
+      }
+
+      .login-pg .a-messagebox ul li::before {
+        position: absolute;
+        left: 0;
+        top: 7px;
+        width: 8px;
+        height: 8px;
+        background-color: #2769c5;
+        border-radius: 50%;
+        content: '
+      }
+
+      .login-pg .a-messagebox li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 8px;
+        color: #243143
+      }
+
+      .login-pg .top-sec span.sub-heading {
+        display: block;
+        font-size: 36px;
+        font-weight: 100;
+        line-height: 1
+      }
+
+      .login-pg span.sub-heading {
+        display: block;
+        font-size: 36px;
+        font-weight: 100;
+        line-height: 1
+      }
+
+      .login-pg .top-sec {
+        margin-bottom: 24px
+      }
+
+      .login-pg .form-sec {
+        margin: 24px 0
+      }
+
+      .login-pg input.form-control {
+        border: 1px solid rgba(38, 104, 197, 0.3);
+        border-radius: 4px !important;
+        height: 32px;
+        color: #243143 !important;
+        padding: 3px 7px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 24px
+      }
+
+      .login-pg input.form-control:hover,
+      .login-pg input.form-control:focus {
+        border-color: #024aa2
+      }
+
+      .login-pg .form-sec label input[type=checkbox].checkbox:checked+span {
+        font-weight: 400
+      }
+
+      .login-pg label input[type=checkbox].checkbox.style-3:checked+span:before {
+        color: #fff;
+        border-color: #024aa2;
+        background: #024aa2
+      }
+
+      .login-pg label:hover input[type=checkbox].checkbox.style-3+span:before {
+        color: #fff;
+        border-color: #024aa2
+      }
+
+      .login-pg label:active input[type=checkbox].checkbox.style-3:checked+span:before {
+        color: #024aa2;
+        background: #fff;
+        border-color: #024aa2
+      }
+
+      .login-pg .remember-forgot>div {
+        flex: 1
+      }
+
+      .login-pg .remember-forgot {
+        display: flex;
+        padding: 0;
+        margin-bottom: 24px
+      }
+
+      .login-pg .form-sec .btn-primary {
+        color: #fff;
+        font-size: 16px;
+        line-height: 24px;
+        background-color: #94c13d;
+        border: none;
+        border-radius: 4px;
+        padding: 12px 16px;
+        font-weight: 600
+      }
+
+      .login-pg .form-sec .btn-primary:hover {
+        background-color: #81a21f
+      }
+
+      .login-pg .bottom-sec {
+        margin-top: 24px
+      }
+
+      .login-pg .bottom-header>p {
+        margin-bottom: 16px
+      }
+
+      .login-pg .bottom-header {
+        margin-bottom: 24px
+      }
+
+      .login-pg .bottom-footer img {
+        width: 42px;
+        height: 40px;
+        float: left;
+        margin-left: -1px
+      }
+
+      .login-pg .bottom-footer p {
+        margin-left: 50px;
+        color: #a4a8b6
+      }
+
+      .login-pg .bottom-footer p a {
+        display: block
+      }
+
+      .login-pg .bottom-footer {
+        margin-top: 24px
+      }
+
+      .login-pg .left-heading {
+        color: #fff
+      }
+
+      .login-pg .left-sec-inner {
+        height: 100%;
+        padding: 0;
+      }
+
+      .login-pg .left-heading h4 {
+        font-weight: 300;
+        font-size: 32px;
+        line-height: 40px;
+        margin-bottom: 24px
+      }
+
+      .login-pg .left-heading p {
+        color: #fff;
+        font-size: 16px;
+        line-height: 24px
+      }
+
+      .login-pg .left-heading a {
+        margin-top: 24px;
+        display: block;
+        font-size: 16px
+      }
+
+      .login-pg .left-heading a .fa {
+        margin-left: 6px
+      }
+
+      .login-pg .top-sec img.logo {
+        max-width: 100%;
+        max-height: 30px;
+        margin-bottom: 16px
+      }
+
+      .login-pg .open>.dropdown-menu {
+        -webkit-animation-name: fadeInDown;
+        -moz-animation-name: fadeInDown;
+        -o-animation-name: fadeInDown;
+        animation-name: fadeInDown
+      }
+
+      .login-pg .right-sec {
+        flex: 1;
+        background: linear-gradient(0deg, rgba(38, 104, 197, 0.05), rgba(38, 104, 197, 0.05)), #FFF
+      }
+
+      .login-pg .right-sec-inner {
+        display: flex;
+        justify-content: center;
+        align-items: center
+      }
+
+      .login-pg .form-group {
+        margin-bottom: 30px
+      }
+
+      .login-pg .form-sec .btn-primary {
+        padding: 12px 16px;
+        background-color: #2668C5;
+        border-radius: 4px;
+        font-size: 14px;
+        line-height: 24px;
+        color: #fff;
+        margin-bottom: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        -webkit-transition: all .2s linear;
+        transition: all .2s linear
+      }
+
+      .login-pg .form-sec .btn-primary:hover {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.07), rgba(0, 0, 0, 0.07)), #2668C5;
+      }
+
+      .login-pg .form-sec .btn-primary:focus {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), #2668C5;
+      }
+
+      .form-links a,
+      #lnkForgot,
+      #lnkRegister,
+      #lnkLogin {
+        font-weight: 600;
+        display: block;
+        text-align: center;
+        margin-top: 16px;
+        font-size: 14px;
+        line-height: 24px;
+        color: #2668C5;
+        -webkit-transition: color .2s linear;
+        transition: color .2s linear
+      }
+
+      .form-links a:hover,
+      form-links a:focus,
+      #lnkForgot:hover,
+      #lnkForgot:focus,
+      #lnkRegister:hover,
+      #lnkRegister:focus,
+      #lnkLogin:hover,
+      #lnkLogin:focus {
+        background-color: #2668C5;
+        background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.07), rgba(0, 0, 0, 0.07));
+        background-size: 100%;
+        background-repeat: repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -moz-background-clip: text;
+        -moz-text-fill-color: transparent;
+      }
+
+      form-links a:active,
+      #lnkForgot:active,
+      #lnkRegister:active,
+      #lnkLogin:active {
+        background-color: #2668C5;
+        background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12));
+        background-size: 100%;
+        background-repeat: repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -moz-background-clip: text;
+        -moz-text-fill-color: transparent;
+      }
+
+      .login-pg .left-sec-inner .carousel {
+        height: 100%
+      }
+
+      .login-pg .left-heading {
+        width: 328px;
+        margin: 0 auto;
+        padding-top: 120px
+      }
+
+      .login-pg .left-heading h4 {
+        font-size: 14px;
+        line-height: 24px;
+        color: #FFF;
+        margin-bottom: 8px;
+        font-weight: 600
+      }
+
+      .login-pg .left-heading p {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 24px;
+        color: rgba(255, 255, 255, 0.7)
+      }
+
+      .login-pg .carousel-inner .item-inner {
+        min-height: 100vh;
+        background-size: cover;
+        background-position: top left
+      }
+
+      .login-pg .form-sec {
+        width: 400px
+      }
+
+      .login-pg .left-sec-inner .carousel .carousel-inner {
+        min-height: 100vh;
+        background-color: #0e306c
+      }
+
+      .login-pg .acrocon.arrow-left {
+        width: 50px;
+        height: 50px;
+        background-image: url('img/left-arrow.png')
+      }
+
+      .login-pg .slide-right,
+      .login-pg .slide-left {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: inline-flex;
+        justify-content: center;
+        align-items: center
+      }
+
+      .login-pg .slide-arrows {
+        position: absolute;
+        top: 310px;
+        left: 139px;
+        left: calc(50% - 328px/2);
+        width: 328px
+      }
+
+      .login-pg .header-sec {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        padding: 24px
+      }
+
+      .login-pg .header-sec .header-dropdown {
+        float: right
+      }
+
+      .login-pg .header-sec .header-text {
+        float: left
+      }
+
+      .login-pg .header-text p {
+        font-size: 24px;
+        line-height: 27px;
+        color: #fff;
+        letter-spacing: 0.3px;
+        font-weight: 300;
+        margin: 6px 0 0
+      }
+
+      .login-pg .header-sec .header-dropdown .dropdown-toggle {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+        padding: 0;
+        text-align: center;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center
+      }
+
+      .login-pg .header-sec .header-dropdown .dropdown-menu {
+        right: 0;
+        left: unset;
+        border: 1px solid #2668C5;
+        box-shadow: 0px 10px 20px rgba(36, 49, 67, 0.2);
+        border-radius: 4px;
+        padding: 6px 0;
+        min-width: 120px
+      }
+
+      .login-pg .header-sec .header-dropdown .dropdown-toggle:hover,
+      .login-pg .header-sec .header-dropdown.open .dropdown-toggle,
+      .login-pg .header-sec .header-dropdown .dropdown-toggle:focus,
+      .login-pg .header-sec .header-dropdown .dropdown-toggle:active {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .login-pg .header-sec .dropdown-menu li>a {
+        padding: 4px 16px;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 24px;
+        color: #243143;
+        mix-blend-mode: normal;
+        text-align: center
+      }
+
+      .login-pg .header-sec .dropdown-menu li>a:hover,
+      .login-pg .header-sec .dropdown-menu li>a:focus,
+      .login-pg .header-sec .dropdown-menu li.active>a {
+        background-color: rgba(38, 104, 197, 0.1);
+        color: #243143;
+      }
+
+      .login-pg .footer-sec {
+        position: absolute;
+        bottom: 0;
+        padding: 24px
+      }
+
+      .login-pg .footer-sec b {
+        font-size: 12px;
+        line-height: 16px;
+        color: #fff;
+        display: block
+      }
+
+      .login-pg .footer-sec b:hover,
+      .login-pg .footer-sec b:focus {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .login-pg .footer-sec b:active {
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      .login-pg .footer-sec p {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 16px;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.6)
+      }
+
+      .login-pg .form-field {
+        position: relative
+      }
+
+      .login-pg .form-field.error.danger .message {
+        color: #D92C23
+      }
+
+      .login-pg .form-field .message {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 16px;
+        position: absolute;
+        margin: 0;
+        display: none
+      }
+
+      .login-pg .form-field.error .message {
+        display: block
+      }
+
+      .login-pg .form-field.error.danger .form-control {
+        border: 1px solid #D92C23
+      }
+
+      .login-pg .form-field img.input-image {
+        position: absolute;
+        right: 0;
+        padding: 13px
+      }
+
+      .login-pg .form-field.with-input-image .form-control {
+        padding-right: 40px
+      }
+
+      @media screen and (min-width: 1680px) {
+        .login-pg .left-sec {
+          width: 687px
+        }
+
+        .login-pg .right-sec {
+          flex: 1
+        }
+      }
+
+      .login-pg .form-sec .btn-primary {
+        padding: 12px 16px !important;
+        font-size: 14px !important
+      }
+
+      .login-pg .dropdown-menu li a {
+        cursor: pointer
+      }
+
+      input:-webkit-autofill,
+      input:-webkit-autofill-strong-password,
+      input:-webkit-autofill-strong-password-viewable {
+        background-color: #fff;
+        background-image: none;
+        color: #243143
+      }
+
+      .login-pg .slide-arrows .slide-right {
+        margin-left: 8px
+      }
+
+      .login-pg .left-sec-inner .carousel .carousel-inner {
+        height: 100vh
+      }
+
+      @media screen and (min-color-index:0; ) and(-webkit-min-device-pixel-ratio:0; ) {
+        @media {
+          body {
+            width: calc(100% + 2px);
+            position: relative
+          }
+        }
+      }
+
+      .login-pg .slide-arrows .slide-right {
+        margin-left: 8px
+      }
+
+      .login-pg .left-sec-inner .carousel .carousel-inner {
+        min-height: 100vh;
+      }
+
+      .login-pg .header-sec .header-dropdown .dropdown-toggle:hover {
+        background: rgba(255, 255, 255, 0.4)
+      }
+
+      .login-pg .slide-arrows a:hover {
+        background: rgba(255, 255, 255, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.2)
+      }
+
+      .login-pg .slide-arrows1 a:focus {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2)
+      }
+
+      .login-pg .slide-arrows a.disabled {
+        opacity: .5
+      }
+
+      .login-pg .footer-sec b {
+        font-weight: 600
+      }
+
+      .login-pg input.form-control {
+        border-radius: 3px !important;
+      }
+
+      .login-pg input.form-control:hover,
+      .login-pg input.form-control:focus {
+        border-color: rgba(38, 104, 197, 0.3);
+      }
+
+      .login-pg .slide-left img {
+        margin-left: -2px;
+      }
+
+      .login-pg .slide-right img {
+        margin-right: -2px;
+      }
+
+      .login-pg .form-sec.forgot-pass {
+        margin-top: -48px;
+      }
+
+      .login-pg input.form-control:hover,
+      .login-pg input.form-control:focus {
+        border-color: #2668C5;
+      }
+    </style>
+    <style>
+      .login-pg .left-sec-inner .carousel .carousel-inner,
+      .login-pg .carousel-inner>.active,
+      .login-pg .carousel-inner .item-inner {
+        min-height: 100vh;
+        height: inherit;
+      }
+
+      .login-pg .left-heading a {
+        text-align: left;
+        margin-top: 30px;
+        color: #408BEA;
+        font-size: 14px;
+        line-height: 24px;
+        -webkit-transition: color .2s linear;
+        transition: color .2s linear;
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.2);
+        display: inline-flex;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-weight: 600;
+        color: #fff;
+      }
+
+      .login-pg .left-heading a:hover,
+      .login-pg .left-heading a:focus {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      .login-pg .left-heading a span {
+        margin-right: 0px;
+      }
+
+      .login-pg .left-heading h4 {
+        max-height: 48px;
+        display: -webkit-box;
+        word-wrap: break-word;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .login-pg .left-heading p {
+        max-height: 150px;
+        display: -webkit-box;
+        margin-bottom: 4px;
+        word-wrap: break-word;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+        /*overflow: hidden;
+        text-overflow: ellipsis;
+    */
+      }
+
+      .login-pg .slide-arrows {
+        top: 400px;
+      }
+
+      .login-pg .login-form.form-sec .btn-holder {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 13px;
+      }
+
+      .login-pg .login-form.form-sec .btn-holder .btn+.btn {
+        margin-top: 0;
+      }
+
+    .SmallBox:hover {
+      cursor: unset;
+    }
+
+      @media only screen and (min-width: 768px) {
+
+        .login-pg #ribbon-sm,
+        .login-pg .right-sec-inner .footer-sec {
+          display: none;
+        }
+      }
+
+      /* NEW BREAKPOINTS */
+      @media only screen and (max-width: 1679px) {}
+
+      @media only screen and (max-width: 1279px) {}
+
+      @media only screen and (max-width: 1099px) {
+        .login-pg .right-sec {
+          width: 400px;
+        }
+
+        .login-pg .right-sec-inner {
+          padding: 44px 36px 32px 36px;
+        }
+
+        .login-pg .form-sec.join-existing-company-form {
+          width: 100%;
+        }
+
+        .login-pg .left-sec {
+          flex: 1;
+        }
+      }
+
+      @media only screen and (max-width: 1023px) {
+        .login-pg .right-sec {
+          width: 400px;
+        }
+
+        .login-pg .right-sec-inner {
+          padding: 44px 36px 32px 36px;
+        }
+
+        .login-pg .form-sec {
+          max-width: 100%;
+        }
+      }
+
+      @media only screen and (max-width: 767px) {
+        .login-pg .a-hr {
+          height: 1px;
+          width: 100%;
+          margin: 24px 0;
+          background: linear-gradient(0deg, rgba(38, 104, 197, 0.05), rgba(38, 104, 197, 0.05)), #FFFFFF;
+        }
+
+        .login-pg #ribbon-sm {
+          display: flex;
+          position: relative;
+          width: unset;
+        }
+
+        .login-pg .left-sec {
+          display: none;
+        }
+
+        .login-pg .right-sec {
+          width: 100%;
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+
+        .login-pg .right-sec-inner {
+          padding: 0;
+          padding: 40px 0 24px 0;
+          min-height: calc(100vh - 56px);
+        }
+
+        .login-pg .form-sec {
+          max-width: 100%;
+          margin: 0;
+        }
+
+        .login-pg .ribbon-sm {
+          height: 56px;
+          background-color: #00204D;
+          color: #fff;
+          display: flex;
+          align-items: center;
+          padding: 17px 25px;
+        }
+
+        .login-pg .ribbon-sm .logo-holder {
+          flex: 1;
+        }
+
+        .login-pg .ribbon-sm .logo-holder i {
+          width: 228px;
+          height: 37px;
+          background-size: unset;
+        }
+
+        .login-pg .ribbon-sm .nav-toggle i {
+          width: 24px;
+          height: 24px;
+          cursor: pointer;
+        }
+
+        .login-pg .form-sec form {
+          max-width: 400px;
+          width: 100%;
+        }
+
+        .login-pg .right-sec-inner .form-sec {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          margin: 0;
+        }
+
+        .login-pg .right-sec-inner .footer-sec {
+          display: block;
+          position: relative;
+          text-align: center;
+          padding: 0;
+        }
+
+        .login-pg .right-sec-inner .footer-sec p {
+          color: rgba(36, 49, 67, 0.6);
+        }
+
+        .login-pg .right-sec-inner .footer-sec a {
+          font-size: 12px;
+          line-height: 16px;
+        }
+      }
+
+      @media only screen and (max-width: 575px) {}
+
+      @media only screen and (max-width: 359px) {}
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid login-pg">
+      <div id="ribbon-sm" class="row ribbon-sm header-sec" style="">
+        <div class="logo-holder">
+          <img src="https://partners.acronis.com/public/svg/acronis-partner-portal.svg">
+        </div>
+        <div class="pg-header-right">
+          <div class="dropdown header-dropdown">
+            <button class="dropdown-toggle" type="button" data-toggle="dropdown" id="_languagedropdown"  onclick="showMobileLanguages()">
+              <img src="https://partners.acronis.com/public/svg/thumb-globe.svg">
+            </button>
+            </div>
+        </div>
+      </div>
+      <div class="row d-flex">
+        <div class="col-md-8 left-sec">
+          <div class="left-sec-inner clearfix">
+            <div class="header-sec">
+              <div class="header-text">
+                <img src="https://partners.acronis.com/public/svg/logo.svg" />
+                <img src="https://partners.acronis.com/public/svg/partner-portal.svg" style="display: block;margin-top: 8px;">
+                <!-- <p>Partner Portal</p> -->
+              </div>
+              <div class="dropdown header-dropdown">
+                <button class="dropdown-toggle" type="button" data-toggle="dropdown" id="languagedropdown" onclick="showLanguages()">
+                  <img src="https://partners.acronis.com/public/svg/thumb-globe.svg" />
+                </button>
+                <ul class="dropdown-menu" id="languages">
+                </ul>
+              </div>
+            </div>
+            <div id="myCarousel" class="carousel slide" data-interval="5000" data-ride="carousel">
+    <div class="carousel-inner">
+
+        <div class="item active">
+                  <div class="item-inner" style="background-image: url('https://partners.acronis.com/img/dw6rm9440t245/thumb-login_banner.png'); ">
+                      <div class="left-heading">
+                          <p>
+                              <b>Introducing MSP Academy</b>
+                          </p>
+                          <br />
+                          <p>
+                              A groundbreaking platform that will revolutionize how you approach your Managed Service Provider (MSP) business.</br></br>
+                It’s designed to equip you with the essential business skills and talent development needed to thrive in today's competitive market.</br>
+                          </p>
+                          <div class="clearfix slider-link">
+                              <a href="https://partners.acronis.com/xl/b3rkyoufawl69" target="_blank">
+                                  <!--<span>Join today</span>-->
+                                  <span>Learn more</span>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" style="display:none">
+                                      <path d="M12.5858 9L10.2929 11.2929C9.90237 11.6834 9.90237 12.3166 10.2929 12.7071C10.6834 13.0976 11.3166 13.0976 11.7071 12.7071L15.7071 8.70711C16.0976 8.31658 16.0976 7.68342 15.7071 7.29289L11.7071 3.29289C11.3166 2.90237 10.6834 2.90237 10.2929 3.29289C9.90237 3.68342 9.90237 4.31658 10.2929 4.70711L12.5858 7H1C0.447715 7 0 7.44772 0 8C0 8.55228 0.447715 9 1 9H12.5858Z" fill="#408BEA"></path>
+                                  </svg>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+        </div>
+    </div>
+    <div class="slide-arrows hidden">
+        <a class="slide-left carousel-control1" href="#myCarousel" data-slide="prev">
+            <img src="https://partners.acronis.com/public/svg/thumb-left-arrow.svg" />
+        </a>
+        <a class="slide-right carousel-control1" href="#myCarousel" data-slide="next">
+        <img src="https://partners.acronis.com/public/svg/thumb-right-arrow.svg" />
+        </a>
+    </div>
+</div>
+            <div class="footer-sec">
+              <p>© 2024 Acronis International GmbH</p>
+              <a onclick="showLegalTerms();" target="_blank" style="cursor:pointer;display:inline-block;">
+                <b>Legal information</b>
+              </a>
+              <a onclick="showContactUs();" style="display:inline-block;margin-left:5px;cursor:pointer;">
+                <b>Contact Us</b>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 right-sec">
+          <div class="right-sec-inner">
+            <div class="form-sec login-form">
+              <form class="" id=acronisformLogin>
+                <h4>Sign in</h4>
+                 <div class="form-group">
+                  <label for="email">Email</label>
+                  <div class="form-field error1 1danger">
+                    <input id="email" type="text" class="form-control" />
+                    <p class="message">Not a valid email address</p>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <div class="form-field with-input-image">
+                    <img id="toggle-password" class="input-image" 
+ src="https://partners.acronis.com/public/img/password.png" style="cursor: pointer;">
+                    <input id="password" type="password" class="form-control">
+                    <p class="message"></p>
+                  </div>
+                </div>
+                <div class="btn-holder">
+                  <button id="btnLogin" type="submit" class="btn btn-primary btn-block">Sign in</button>
+                  <button id="btnCybercloud" type="button" class="btn btn-primary btn-block" style="display:none;"  target="_self">CyberCloud Login</button>
+                </div>
+                <div class="clearfix form-links">
+                  <a id="lnkForgot" href="#forgot_password">Forgot Password</a>
+                  <a id="" class="signuplink" onclick="showSignupLink();" target="_blank" style="cursor:pointer;">Sign up new company</a>
+                  <a id="" class="signuplink" href="https://partners.acronis.com/user/register">Join existing company</a>
+                </div>
+              </form>
+              <div class="footer-sec form-links">
+                <p>© 2024 Acronis International GmbH</p>
+                <a onclick="showLegalTerms();" target="_blank" style="display:inline-block;cursor:pointer;">Legal information</a>
+                <a onclick="showContactUs();" style="display:inline-block;margin-left:5px;;cursor:pointer;">Contact Us</a>
+              </div>
+            </div>
+            <div class="form-sec forgot-pass" id=acronisformForgot style="display:none">
+              <h4>Forgot Password</h4>
+              <form class="">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <div class="form-field error1 1danger">
+                    <input id="forgotUser" type="text" class="form-control">
+                    <p class="message">Not a valid email address</p>
+                  </div>
+                </div>
+                <button id=btnForgot type="submit" class="btn btn-primary btn-block">Send instructions</button>
+                <div class="clearfix form-links">
+                  <a id=lnkLogin href=#login>Back to sign in</a>
+                  <a id="" class="signuplink" href="#signup">Sign up new company</a>
+                  <a id="" class="signuplink" href="https://partners.acronis.com/user/register">Join existing company</a>
+                </div>
+              </form>
+            </div>
+            <div class="clearfix a-messagebox" style=" margin-top: 20px;display:none;width:400px;">
+              <ul>
+                <li>新パートナーポータルに初めてサインインする場合は、[パスワードを忘れた] から新しいパスワードを登録してください。サインインに関する問題は <a href="mailto:GlobalPartnerTeam@acronis.com">GlobalPartnerTeam@acronis.com</a> までお問い合わせください。 </li>
+              </ul>
+            </div>
+            <div class="a-hr"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type=' text/javascript'> function showSignupLink() {         var langCode = api.getCookie('amp_default_language', 'en');         switch (langCode) {           case "en":             window.open("https://www.acronis.com/en-us/partners/registration/");             break;           case "es":             window.open("https://www.acronis.com/es-mx/partners/registration/");             break;           case "it":             window.open("https://www.acronis.com/it-it/partners/registration/");             break;           case "de":             window.open("https://www.acronis.com/de-de/partners/registration/");             break;           case "fr":             window.open("https://www.acronis.com/fr-fr/partners/registration/");             break;           case "ja":             window.open("https://www.acronis.com/ja-jp/partners/registration/");             break;  default:  window.open("https://www.acronis.com/en-us/partners/registration/"); break;      }       }        function showContactUs() {         var langCode = api.getCookie('amp_default_language', 'en');         switch (langCode) {           case "en":             window.open("https://www.acronis.com/en-us/partners/contact/");             break;           case "es":             window.open("https://www.acronis.com/es-mx/partners/contact/");             break;           case "it":             window.open("https://www.acronis.com/it-it/partners/contact/");             break;           case "de":             window.open("https://www.acronis.com/de-de/partners/contact/");             break;           case "fr":             window.open("https://www.acronis.com/fr-fr/partners/contact/");             break;           case "ja":             window.open("https://www.acronis.com/ja-jp/partners/contact/");             break;  default : window.open("https://www.acronis.com/en-us/partners/contact/");             break;         }       }        function showLegalTerms() {         var langCode = api.getCookie('amp_default_language', 'en');         switch (langCode) {           case "en":             window.open("https://www.acronis.com/en-us/legal.html");             break;           case "es":             window.open("https://www.acronis.com/es-mx/legal.html");             break;           case "it":             window.open("https://www.acronis.com/it-it/legal.html");             break;           case "de":             window.open("https://www.acronis.com/de-de/legal.html");             break;           case "fr":             window.open("https://www.acronis.com/fr-fr/legal.html");             break;           case "ja":             window.open("https://www.acronis.com/ja-jp/legal.html");             break;   default:window.open("https://www.acronis.com/en-us/legal.html");  break;      }       }     function showLanguages(){ event.stopPropagation(); var langElement = document.getElementById("languagedropdown"); langElement.parentElement.classList.toggle("open"); } function showMobileLanguages(){ event.stopPropagation(); var langElement = document.getElementById("_languagedropdown"); langElement.parentElement.classList.toggle("open"); } var languageItems = document.querySelectorAll('#_languages li');languageItems.forEach(function(item) {item.addEventListener('click', function() {var language = this.querySelector('a').getAttribute('value');document.cookie = 'amp_default_language=' + language;
+window.location.reload();});});
+   </script>
+  </body>
+</html>        
+        <script src="https://partners.acronis.com/bundles/0970bea3eb0433f36d9ed409e7cc8e079771b298/en/login.js" integrity="sha512-kbmbPo22bpK1R5n6Twtr9SQI5AnxkxCwaTj2fLqrv8CTj2iANL/fa/9nk2fnF94SBCSLh4w/bGTq0uL0Sm9AfQ==" crossorigin="anonymous"></script>
+
+        <script type="text/javascript">
+
+            var hiddenField = $('<input type="hidden">');
+            hiddenField.attr('id', 'usersorigin');
+            hiddenField.attr('value', 512);
+            $('#formLogin').append(hiddenField);
+
+
+            var partnerData ={};
+            $("#password").attr("autocomplete", "off");
+            if (!$.isEmptyObject(partnerData)) {
+                $("#formForgot").hide();
+                $("#formLogin").hide();
+                $("#lnkForgot").hide();
+                $("#lnkLogin").hide();
+                $("#formRegister").hide();
+                $("#formConfirmRegistration").show();
+                $(".content").css({ "margin-bottom": "0%", "margin-top": "3%" });
+                $(".login").addClass("registration");
+
+                $("#partnername").html("<strong>"+partnerData.firstname + " " + partnerData.lastname+"</strong>");
+                $("#partneremail").html("<i>"+partnerData.email+"</i>");
+                $("#partnercompany").html(partnerData.partnercompany);
+                $("#partnerusername").val(partnerData.email);
+                if (partnerData.organizationid != undefined) {
+                    $("#partnerOrgName").html(partnerData.organizationName);
+                    var orgCountryCity = '';
+                    if (partnerData.organizationCountry != "" && partnerData.organizationCity != "")
+                        orgCountryCity = partnerData.organizationCountry + ", " + partnerData.organizationCity;
+                    else if (partnerData.organizationCountry != "" && partnerData.organizationCity == "")
+                        orgCountryCity = partnerData.organizationCountry + ", No City";
+                    else if (partnerData.organizationCountry == "" && partnerData.organizationCity != "")
+                        orgCountryCity = "No Country" + ", " + partnerData.organizationCity;
+                    else
+                        orgCountryCity = "No Country" + ", " + "No City";
+                    $("#partnerOrgCountryCity").html(orgCountryCity);
+                    $("#partnerOrgAddress1").html(partnerData.organizationAddr1);
+                    $("#partnerOrgAddress2").html(partnerData.organizationAddr2);
+                    $("#partnerOrgAddress3").html(partnerData.organizationAddr3);
+                }
+                else
+                {
+                    $("#partnerOrgName").html("No Company");
+                }
+            }
+
+            function validateUser() {
+                $("#lblErrorMsg").text("");
+                $("#formRegister .hass-error").removeClass("has-error");
+                if (grecaptcha.getResponse() != "") {
+                    if (validateFields("formRegister")) {
+                        var firstName = $("#firstname").val();
+                        var lastName = $("#lastname").val();
+                        var userEmail = $("#useremail").val();
+                        var company = $("#company").val();
+                        api.call("VerifyUser", { firstname: firstName, lastname: lastName, email: userEmail, partnercompany: company }, onSuccessNext, function (arg) {  setNextRegisterState(false); });
+                    }
+                }
+                else
+                {
+                    $("#lblErrorMsg").text("Please provide correct captcha details.");
+                }
+            }
+
+            function onSuccessNext(arg) {
+                $("#firstname").val("");
+                $("#lastname").val("");
+                $("#useremail").val("");
+                $("#company").val("");
+                setNextRegisterState(false);
+                if (arg.status == 0) {
+                    $.smallBox({
+                        title: 'Email Sent',
+                        content: 'An email has been sent to the registered email address about registration process.',
+                        color: '#3276B1',
+                        icon: "far fa-envelope",
+                        number: "1",
+                        timeout: 6000
+                    });
+                }
+                else
+                {
+                    $("#lblErrorMsg").text('Something went wrong while processing your request. Reach out to {0} for further assistance on setting up your profile.');
+                }
+            }
+            var nextRegisterState
+            function setNextRegisterState(state) {
+                nextRegisterState = state;
+                var $btn = $("#btnRegister");
+                if (state) {
+                    $btn.button('loading');
+                } else {
+                    $btn.button('reset');
+                }
+            }
+
+            function completeRegistration() {
+                $("#lblConfirmErrorMsg").text("");
+                $("#formConfirmRegistration .has-error").removeClass("has-error");
+                event.preventDefault();
+                if (validateFields("formConfirmRegistration")) {
+
+                    var password = $("#partnerPassword").val();
+                    var confirmPassword = $("#partnerconfirmpassword").val();
+                    if (password != confirmPassword) {
+                        $("#partnerPassword").val("");
+                        $("#partnerconfirmpassword").val("");
+                        $("#lblConfirmErrorMsg").text("Password entered did not match the confirm password.");
+                    }
+                    else {
+                        api.call("RegisterPartnerUser", { password: $("#partnerPassword").val(), guid: partnerData["guid"] }, onSuccessRegister, function (arg) { setRegisterState(false); });
+                    }
+                }
+            }
+
+            var registerState
+            function setRegisterState(state) {
+                registerState = state;
+                var $btn = $("#btnComplete")
+                if (state) {
+                    $btn.button('loading')
+                } else {
+                    $btn.button('reset')
+                }
+
+            }
+
+            function onSuccessRegister(arg) {
+                $("#partnerPassword").val("");
+                $("#partnerconfirmpassword").val("");
+                setRegisterState(false);
+                if (arg.status == 0) {
+                    if (arg.result.code == "SUCCESS") {
+                        var $btn = $("#btnRegister");
+                        $btn.data("loading-text", "Loading dashboard...");
+                        $btn.button("loading");
+
+                        window.location = arg.result.msg;
+                    }
+                }
+            }
+
+            $(function () {
+                $(".login-message-holder .btnClose").click(function () {
+                    $(".login-message-holder").hide();
+                });
+            });
+            $(function () {
+                $(".icon-append ").click(function () {
+                    var x = document.getElementById("password");
+                    if (x.type === "password") {
+                        $('#password').attr('type', 'text');
+                        $('.icon-append ').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+                    }
+                    else {
+                        $('#password').attr('type', 'password');
+                        $('.icon-append ').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+                    }
+                });
+            });
+
+
+                                $('#acronisformLogin').append(hiddenField);
+                                $('#btnForgot').removeAttr('data-loading-text','Sending...');
+                                $('#lnkForgot').css('text-transform', 'initial');
+                                $('#lnkForgot').click(function (event) {
+                                        $('#btnForgot').html('Send instructions');
+                                });
+                                $('#forgotUser').on('keyup', function () {
+                                    $('#forgotUser').parent().removeClass('error danger');
+                                });
+                                if(externalLoginPath != '')
+                                {
+                                    $('#btnCybercloud').on('click',function(){
+                                        window.location.href = externalLoginPath;
+                                    });
+                                    $('#btnCybercloud').removeClass('hidden');
+                                }
+                                var langCode = api.getCookie('amp_default_language', 'en');
+                                $('#languages li a[value='+langCode+']').parent().addClass('active');
+                                var regexEmailPattern = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/;
+                                if(langCode == 'ja'){ $('.a-messagebox').show(); }
+                                else { $('.a-messagebox').hide(); }
+                                $('#email').on('keyup', function () {
+                                    $('#email').parent().removeClass('error danger');
+                                });
+                                $('#email').focusout(function () {
+                                    if ($('#email').val() == '') {
+                                        $('#email').parent().addClass('error danger');
+                                        $('#email').parent().find('.message').text('Login is missing');
+                                    }
+                                    else if(!regexEmailPattern.test($('#email').val().toLowerCase())){
+                                        $('#email').parent().addClass('error danger');
+                                    $('#email').parent().find('.message').text('Not a valid email address');
+                                    }
+                                });
+                                $('#forgotUser').focusout(function () {
+                                    if ($('#forgotUser').val() == '') {
+                                        $('#forgotUser').parent().addClass('error danger');
+                                        $('#forgotUser').parent().find('.message').text('Login is missing');
+                                    }
+                                    else if(!regexEmailPattern.test($('#forgotUser').val().toLowerCase())){
+                                        $('#forgotUser').parent().addClass('error danger');
+                                    $('#forgotUser').parent().find('.message').text('Not a valid email address');
+                                    }
+                                });
+                                $('#languages li').on('click', function () {
+                                    var language = $(this).find('a').attr('value');
+                                    document.cookie = 'amp_default_language=' + language;
+                                    window.location.reload();
+                                });
+                                $('#toggle-password').click(function () {
+                                    var src = $(this).attr('src');
+                                    var newsrc = (src == 'https://partners.acronis.com/public/img/password.png') ? 'https://partners.acronis.com/public/img/password-o.png' : 'https://partners.acronis.com/public/img/password.png';
+                                        $(this).attr('src', newsrc);
+                                    var type = $('#password').attr('type');
+                                    var newtype = (type == 'password') ? 'text' : 'password';
+                                    $('#password').attr('type', newtype);
+                                });
+                                $('#acronisformLogin').submit(function (event) {
+                                  setAcronisLoginState(true);
+                                  event.preventDefault();
+                                  var user = $('#email').val();
+                                  var pass = $('#password').val();
+                                  var rem = $('#remember').is(':checked');
+                                  var language = api.getCookie('amp_default_language', 'en');
+                                    var userOrigin = $('#usersorigin').val();
+                                    var locale = window.navigator.language;
+                                  if (regexEmailPattern.test(user.toLowerCase()))
+                                    api.call('WebLogin', { user: user, pass: pass, remember: rem, language: language, usersorigin: parseInt(userOrigin),locale:locale }, onAcrSuccessAuth, function (arg) { setLoginState(false); });
+                                  else {
+                                    $('#email').parent().addClass('error danger');
+                                    $('#email').parent().find('.message').text('Not a valid email address');
+                                    setAcronisLoginState(false);
+                                  }
+                                });
+                                $('#acronisformForgot').submit(function (event) {
+                                  event.preventDefault();
+                                  var user = $('#forgotUser').val();
+                                  $('#forgotUser').parent().removeClass('error danger');
+                                  if (user.length > 0 && regexEmailPattern.test(user.toLowerCase())) {
+                                      setAcronisForgotState(true);
+                                      api.call('ForgotPassword', { user: user }, onAcrSuccessForgot, function (arg) { setAcronisForgotState(false); });
+                                  }
+                                  else {
+                                    $('#forgotUser').parent().addClass('error danger');
+                                        if(user.length == 0)
+                                            $('#forgotUser').parent().find('.message').text('Login is missing');
+                                        else 
+                                            $('#forgotUser').parent().find('.message').text('Not a valid email address');
+                                    setAcronisForgotState(false);
+                                  }
+                                });
+                                var acronisloginstate
+                                function setAcronisLoginState(state) {
+                                  acronisloginstate = state;
+                                  var $btn = $('#btnLogin')
+                                  if (state) {
+                                    $btn.button('loading')
+                                  } else {
+                                    $btn.button('reset')
+                                  }
+                                }
+                                var acronisforgotstate
+                                function setAcronisForgotState(state) {
+                                  acronisforgotstate = state;
+                                  var $btn = $('#btnForgot')
+                                  if (state) {
+                                    $btn.html("<svg class='fa-spin' width='19' height='19' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'><path d = 'M8 0V2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14C11.3137 14 14 11.3137 14 8H16C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0Z' fill = 'white' /></svg>");
+                                  } else {
+                                    $btn.button('reset')
+                                  }
+                                }
+                                function onAcrSuccessAuth(arg) {
+                                  if (arg.result == 0 || arg.result == 3) {
+                                    var $btn = $('#btnLogin');
+                                    $btn.data('loading-text', 'Loading dashboard...');
+                                    $btn.button('loading');
+                                    window.location = returnurl;
+                                  }
+                                  else {
+                                    setAcronisLoginState(false);
+                                    $('#password').val('');
+                                    $.smallBox({
+                                      title: 'Invalid username and password or your account is locked out.',
+                                      content: 'The username and password you supplied could not be found or your account is locked out, please try again or select "Forgot password"',
+                                      color: '#C46A69',
+                                      icon: 'fa fa-exclamation-triangle shake animated',
+                                      number: '1',
+                                      timeout: 6000
+                                    });
+                                  }
+                                }
+                                function onAcrSuccessForgot(arg) {
+                                  $('#forgotUser').val('');
+                                  setAcronisForgotState(false);
+                                  $('#lnkLogin').click();
+                                    if(arg.result){
+                                      var supportEmail = window._supportEmail;
+                                      $.smallBox({
+                                        title: 'Email Sent',
+                                        content: 'An email has been sent to the registered address with instructions on how to reset your password. If you do not receive an email within 10 minutes, contact <a style="color:#FFFFFF;" href="mailto:'+supportEmail+'" target="_top">'+supportEmail+'</a>',
+                                        color: '#3276B1',
+                                        number: '1',
+                                        icon: 'fa fa-envelope',
+                                        timeout: 6000
+                                      });
+                                    }
+                                    else {
+                                        $.smallBox({
+                                        title: 'User not registered',
+                                        content: 'This user account is not yet registered with Acronis’ new, fully redesigned Partner Portal. Please re-register with us by clicking on “{1}”.'.replace('{1}','<a class="cursor-pointer" style="color:#FFFFFF;text-decoration:underline;" href="https://www.acronis.com/partners/registration/">Sign up new company</a>'),
+                                        color: '#C46A69',
+                                        number: '1',
+                                        icon: 'fa fa-warning shake animated',
+                                        timeout: 6000
+                                      });
+                                    }
+                                }
+        </script>
+    </body>
+
+</html>
